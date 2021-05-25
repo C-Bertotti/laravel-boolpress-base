@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -15,7 +16,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        dd($posts);
     }
 
     /**
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**

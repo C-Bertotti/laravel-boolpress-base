@@ -17,4 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('post', 'PostController');
+Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
+    Route::resource('post', 'PostController');
+});
+
