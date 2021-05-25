@@ -6,11 +6,28 @@
 
 @section('content')
 <form action="{{route('admin.post.store')}}" method="POST">
+    @method('POST')
+    @csrf
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Title">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+        <label for="date">date</label>
+        <input type="date" class="form-control" id="date" name="date" placeholder="Date">
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" name="content" id="content" rows="10" placeholder="Content"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">image</label>
+        <input type="text" class="form-control" id="image" name="image">
+    </div>
+    <div class="form-group">
+        <label for="published">published</label>
+        <input type="checkbox" class="form-control" id="published" name="published" placeholder="published">
+    </div>
+    <button type="submit" class="btn btn-primary">Crea</button>
   </form>
 @endsection
