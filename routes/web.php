@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//rotta per l'home page lato GUEST
+Route::get('/', 'BlogController@index');
 
+
+//rotte raggruppate per il lato ADMIN
 Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
     Route::resource('post', 'PostController');
 });
