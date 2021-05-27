@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //rotta per l'home page lato GUEST
-Route::get('/', 'BlogController@index');
+Route::get('/', 'BlogController@index')->name('guest.posts.index');
+
+//rotta per lo show lato GUEST
+Route::get('/posts/{slug}', 'BlogController@show')->name('guest.posts.show');
 
 
 //rotte raggruppate per il lato ADMIN

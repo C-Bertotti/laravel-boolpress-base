@@ -7,17 +7,14 @@
 @section('mainContent')
     <div class="row">
         <div class="col-md-8 blog-main">
+            @foreach ($posts as $post)
             <div class="blog-post">
-                <h2 class="blog-post-title">Another blog post</h2>
-                <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
-                <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                <blockquote>
-                    <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                </blockquote>
-                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                <h2 class="blog-post-title">{{ $post->title }}</h2>
+                <p class="blog-post-meta">{{ $post->date }}</p>
+                <p>{{ $post->content }}</p>
+                <p><a href="{{ route('guest.posts.show', ['slug' => $post->slug]) }}">Leggi di più</a></p>
             </div><!-- /.blog-post -->
+            @endforeach
         </div><!-- /.blog-main -->
 
         <aside class="col-md-4 blog-sidebar">
