@@ -77,7 +77,7 @@ class PostController extends Controller
         //NB: Se non avessimo dovuto manipolare lo slug avremmo potuto semplicemente scrivere Post::create($data), altriment avremo potuto usarlo ma solamente se avessimo assegnato il valore slug al di fuori sotto la variabile d'appoggio $data['slug'] = Str::slug($data['title'], '-');
 
         //reindirizzamento
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.post.index');
     }
 
     /**
