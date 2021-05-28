@@ -11,6 +11,18 @@
     <div>
         <p>{{ $post->content }}</p>
     </div>
+
+    <h3 class="mb-3">Commenti</h3>
+            <ul>
+                @forelse ($post->comments as $comment)
+                    <li>
+                        <h4>{{ $comment->name}}</h4>
+                        <p>{{ $comment->content}}</p>
+                    </li>
+                @empty
+                    <p>Non ci sono ancora commenti.</p>
+                @endforelse
+            </ul>
     <div class="text-right">
         <a href="{{ route('admin.post.index') }}"><button type="button" class="btn btn-primary">Back</button></a>
     </div>
