@@ -25,7 +25,7 @@
                     <td><img class="cover__image--index" src="{{ $post->image ? $post->image : 'https://via.placeholder.com/100'}}" alt="{{ $post->title }}"></td>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->date }}</td>
-                    <td>{{ $post->published }}</td>
+                    <td>{!! $post->published ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' !!}</td>
                     <td class="column--action">
                         <a href="{{ route('admin.post.show', ['post' => $post->id ] ) }}"><button type="button" class="btn btn-secondary actions"><i class="fas fa-eye"></i></button></a>
                         <a href="{{ route('admin.post.edit', ['post' => $post->id ] ) }}"><button type="button" class="btn btn-primary actions"><i class="fas fa-pen"></i></button></a>
@@ -43,6 +43,9 @@
     @if (session('message'))
         <div class="alert alert-success alert__messages">
             {{ session('message') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
 @endsection

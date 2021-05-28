@@ -22,7 +22,7 @@ class CommentsTableSeeder extends Seeder
         foreach($posts as $post) {
 
             //per ognuno dei post creo dei commenti, o no nel caso in cui non ci sia la condizione necessaria per entare nel ciclo;
-            for($i = 0; $i < rand(0, 3); $i++) {
+            for($i = 0; $i < rand(0, 5); $i++) {
                 $newComment = new Comment();
                 $newComment->post_id = $post->id;
                 $newComment->name = $faker->name();
