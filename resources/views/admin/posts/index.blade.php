@@ -12,24 +12,24 @@
     <table class="table mt-4 table-striped">
         <thead>
         <tr>
-            <th scope="col">Locandina</th>
+            <th scope="col">Immagine</th>
             <th scope="col">Titolo</th>
-            <th scope="col">Regista</th>
-            <th scope="col">Generi</th>
+            <th scope="col">Data creazione</th>
+            <th scope="col">Pubblicato</th>
             <th scope="col">Azioni</th>
         </tr>
         </thead>
         <tbody>
-            @foreach ($movies as $movie)
+            @foreach ($posts as $post)
                 <tr>
-                    <td><img class="cover__image--index" src="{{ $movie->cover_image }}" alt="{{ $movie->title }}"></td>
-                    <td>{{ $movie->title }}</td>
-                    <td>{{ $movie->author }}</td>
-                    <td>{{ $movie->genre }}</td>
+                    <td><img class="cover__image--index" src="{{ $post->image ? $post->image : 'https://via.placeholder.com/100'}}" alt="{{ $post->title }}"></td>
+                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->published }}</td>
                     <td class="column--action">
-                        <a href="{{ route('movies.show', ['movie' => $movie->id ] ) }}"><button type="button" class="btn btn-secondary actions"><i class="fas fa-eye"></i></button></a>
-                        <a href="{{ route('movies.edit', ['movie' => $movie->id ] ) }}"><button type="button" class="btn btn-primary actions"><i class="fas fa-pen"></i></button></a>
-                        <form action="{{route('movies.destroy', ['movie' => $movie->id ])}}" method="POST">
+                        <a href="{{ route('admin.post.show', ['post' => $post->id ] ) }}"><button type="button" class="btn btn-secondary actions"><i class="fas fa-eye"></i></button></a>
+                        <a href="{{ route('admin.post.edit', ['post' => $post->id ] ) }}"><button type="button" class="btn btn-primary actions"><i class="fas fa-pen"></i></button></a>
+                        <form action="{{route('admin.post.destroy', ['post' => $post->id ])}}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-danger actions"><i class="fas fa-trash-alt"></i></button>

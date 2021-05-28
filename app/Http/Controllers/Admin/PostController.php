@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         //1. Prendo i dati dal DB
         $posts = Post::all();
-        
+
         //2. Ritorno la view
         return view('admin.posts.index', compact('posts'));
     }
@@ -90,7 +90,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        //Restituisco la show, il post che deve prendere gli viene passato dalla rotta
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
