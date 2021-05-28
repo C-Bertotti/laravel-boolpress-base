@@ -10144,6 +10144,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 
+button.actions {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
 img.cover__image--index {
   height: 100px;
   width: auto;
@@ -10159,10 +10165,11 @@ td.column--action > * {
   right: 20px;
 }
 
-button.actions {
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
+img.cover__image--show {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /*!
