@@ -24,7 +24,7 @@
                 <tr>
                     <td><img class="cover__image--index" src="{{ $post->image ? $post->image : 'https://via.placeholder.com/100'}}" alt="{{ $post->title }}"></td>
                     <td>{{ $post->title }}</td>
-                    <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->date }}</td>
                     <td>{{ $post->published }}</td>
                     <td class="column--action">
                         <a href="{{ route('admin.post.show', ['post' => $post->id ] ) }}"><button type="button" class="btn btn-secondary actions"><i class="fas fa-eye"></i></button></a>

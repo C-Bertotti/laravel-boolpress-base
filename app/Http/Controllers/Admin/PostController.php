@@ -123,8 +123,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        //metodo per eliminare l'istanza
+        $post->delete();
+
+        //faccio il rendirizzamento alla home e successivamente con il metodo with stampo il messaggio di avvenuta cancellazione
+        return redirect()->route('admin.post.index')->with('message', 'Il post ' . $post->title . ' è stato eliminato');
+        //metodo with: il primo par è la chiave(id del messaggio) e il secondo il valore(testo del msg)
     }
 }
