@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
@@ -37,7 +38,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('tags'));
     }
 
     /**
@@ -48,7 +50,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
         //validazione
     
         //1. Validazione dei dati inseriti
@@ -77,6 +78,8 @@ class PostController extends Controller
 
         $newPost->save(); 
 
+        //3. inserisco nella tabella pivot i tag 
+        $newPost->tags()->attach($data['tags']);
         //NB: Se non avessimo dovuto manipolare lo slug avremmo potuto semplicemente scrivere Post::create($data), altrimenti avremo potuto usarlo ma solamente se avessimo assegnato il valore slug al di fuori sotto la variabile d'appoggio $data['slug'] = Str::slug($data['title'], '-');
 
         //reindirizzamento
@@ -147,6 +150,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        //metodo per eliminare la relazione tra post e tag
+        $post->tags()->detach();
+
         //metodo per eliminare l'istanza
         $post->delete();
 
