@@ -38,7 +38,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        //accedo ai dati dei tags per stamparli
         $tags = Tag::all();
+
+        //ritorno la view della pagina crete
         return view('admin.posts.create', compact('tags'));
     }
 
@@ -106,8 +109,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        //1. Prendo i dati dal DB
+        $tags = Tag::all();
+
         //Restituisco la edit, con il post che deve essere modificato
-        return view('admin.posts.edit', compact('post'));
+        return view('admin.posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -137,6 +143,9 @@ class PostController extends Controller
         //4. Se passa la validazione vado a fare l'operazione di
         //UPDATE
         $post->update($data);
+
+        //aggiorno i tag
+        $post->tags()->sync($data['tags']); //devo passare come parametro di sync l'array che devo aggiornare
 
         //RETURN
         return redirect()->route('admin.post.show', $post)->with('message', 'Il post ' . $post->title . ' è stato aggiornato');;
