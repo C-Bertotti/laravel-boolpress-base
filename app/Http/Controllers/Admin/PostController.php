@@ -60,7 +60,7 @@ class PostController extends Controller
         $data['published'] = isset($data['published']) ? 1 : 0;
 
         //4. Se passa la validazione vado a fare l'operazione di
-
+        
         //INSERT
 
         //1. Istanzio un nuovo elemento sulla base del modello Post (mi ricordo di inserire il Model nella parte alta del documento con Use 'App\Post')
@@ -76,7 +76,7 @@ class PostController extends Controller
 
         $newPost->save(); 
 
-        //NB: Se non avessimo dovuto manipolare lo slug avremmo potuto semplicemente scrivere Post::create($data), altriment avremo potuto usarlo ma solamente se avessimo assegnato il valore slug al di fuori sotto la variabile d'appoggio $data['slug'] = Str::slug($data['title'], '-');
+        //NB: Se non avessimo dovuto manipolare lo slug avremmo potuto semplicemente scrivere Post::create($data), altrimenti avremo potuto usarlo ma solamente se avessimo assegnato il valore slug al di fuori sotto la variabile d'appoggio $data['slug'] = Str::slug($data['title'], '-');
 
         //reindirizzamento
         return redirect()->route('admin.post.index');
@@ -100,9 +100,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        //Restituisco la edit, con il post che deve essere modificato
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
