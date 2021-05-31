@@ -10,6 +10,12 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    protected $validation = [
+        'title' => 'required|max:255|string|unique:posts',
+        'date' => 'required|date',
+        'content' => 'required|string',
+        'image' => 'nullable|url',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -46,12 +52,7 @@ class PostController extends Controller
         //validazione
     
         //1. Validazione dei dati inseriti
-        $request->validate([
-            'title' => 'required|max:255|string',
-            'date' => 'required|date',
-            'content' => 'required|string',
-            'image' => 'nullable|url',
-        ]);
+        $request->validate($this->validation);
         
         //2.salvo i dati in una variabile d'appoggio
         $data = $request->all();
@@ -113,9 +114,29 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        //validazione
+        $validation = $this->validation;
+
+        $validation['title'] = $validation['title'] . ',title,' . $post['id'] ;
+        //1. Validazione dei dati inseriti
+        $request->validate($validation);
+
+
+
+        //2.salvo i dati in una variabile d'appoggio
+        $data = $request->all();
+
+        //3. Faccio un controllo sulla checkbox. La chiave  "published" è settata? allora inserisco come valore della chiave 1, altrimenti 0
+        $data['published'] = isset($data['published']) ? 1 : 0;
+
+        //4. Se passa la validazione vado a fare l'operazione di
+        //UPDATE
+        $post->update($data);
+
+        //RETURN
+        return redirect()->route('admin.post.show', $post)->with('message', 'Il post ' . $post->title . ' è stato aggiornato');;
     }
 
     /**
