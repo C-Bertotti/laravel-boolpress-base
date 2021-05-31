@@ -11,6 +11,12 @@
     <div>
         <p>{{ $post->content }}</p>
     </div>
+    <div>
+        <h4>Tags</h4>
+        @foreach ($post->tags as $tag)
+            <span class="badge badge-primary">{{ $tag->name }}</span>
+        @endforeach
+    </div>
 
     <h3 class="mb-3">Commenti</h3>
             <ul>
