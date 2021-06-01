@@ -21,8 +21,8 @@
         @method('PUT')
         @csrf
         <div class="form-group">
-        <label for="title">Titolo</label>
-        <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ old('title') ? old('title') : $post->title  }}">
+            <label for="title">Titolo</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ old('title') ? old('title') : $post->title  }}">
         </div>
         <div class="form-group">
             <label for="date">Data</label>

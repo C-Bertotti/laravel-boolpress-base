@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -27,6 +28,23 @@ class BlogController extends Controller
 
         //2. Ritorno la view della pagina show
         return view('guest.show', compact('post'));
+    }
 
+    public function addComment(Request $request, Post $post)
+    {
+        //validazione
+        $request->validate([
+            'name' => 'nullable|string|max:100',
+            'content' => 'required|string',
+        ]);
+
+        //inserisco un nuovo commento
+        $newComment = new Comment();
+        $newComment->post_id = $post->id;
+        $newComment->name = $request->name;
+        $newComment->content = $request->content;
+        $newComment->save();
+
+        return back();
     }
 }

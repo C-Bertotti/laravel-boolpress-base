@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//rotta per l'home page lato GUEST
+//lato GUEST
+//rotta per l'homepage 
 Route::get('/', 'BlogController@index')->name('guest.posts.index');
 
-//rotta per lo show lato GUEST
+//rotta per lo show
 Route::get('/posts/{slug}', 'BlogController@show')->name('guest.posts.show');
+
+//rotta per lo show
+Route::post('/posts/{post}/add-comment', 'BlogController@addComment')->name('guest.posts.add-comment');
 
 
 //rotte raggruppate per il lato ADMIN
